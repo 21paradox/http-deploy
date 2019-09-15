@@ -6,9 +6,11 @@ const domain = process.env.controlServer || 'http://localhost:9999';
 const allService = {};
 const jhead = { 'Content-Type': 'application/json' };
 
+const hostname = process.env.agentName || os.hostname();
+
 async function doPoll() {
     const info = {
-        hostname: process.env.agentName || os.hostname(),
+        hostname,
         platform: os.platform(),
         service: {
             ...allService
@@ -53,7 +55,7 @@ async function doPoll() {
                     body: JSON.stringify({
                         log,
                         serviceName,
-                        hostname: os.hostname(),
+                        hostname
                     }),
                     headers: jhead
                 });
