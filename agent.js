@@ -5,9 +5,10 @@ require('daemon')({
 });
 console.log(`${process.pid} process start at ${new Date()}`);
 
-const fetch = require('node-fetch');
-const shelljs = require('shelljs');
-const os = require('os')
+import fetch from 'node-fetch';
+import shelljs from 'shelljs';
+import os from 'os';
+
 const domain = process.env.controlServer || 'http://localhost:9999';
 
 const allService = {};
@@ -83,7 +84,6 @@ function wait(ms) {
 async function start() {
     while (true) {
         try {
-            console.log('asdadasd')
             await doPoll(allService);
         } catch (e) {
             console.log(e);
