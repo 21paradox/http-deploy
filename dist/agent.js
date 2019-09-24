@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 63);
+/******/ 	return __webpack_require__(__webpack_require__.s = 64);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -95,8 +95,8 @@
 
 var os = __webpack_require__(5);
 var fs = __webpack_require__(1);
-var glob = __webpack_require__(8);
-var shell = __webpack_require__(18);
+var glob = __webpack_require__(9);
+var shell = __webpack_require__(19);
 
 var shellMethods = Object.create(shell);
 
@@ -603,6 +603,12 @@ module.exports = require("url");
 
 /***/ }),
 /* 8 */
+/***/ (function(module, exports) {
+
+module.exports = require("child_process");
+
+/***/ }),
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // Approach:
@@ -648,26 +654,26 @@ module.exports = require("url");
 module.exports = glob
 
 var fs = __webpack_require__(1)
-var rp = __webpack_require__(20)
-var minimatch = __webpack_require__(9)
+var rp = __webpack_require__(21)
+var minimatch = __webpack_require__(10)
 var Minimatch = minimatch.Minimatch
-var inherits = __webpack_require__(55)
-var EE = __webpack_require__(57).EventEmitter
+var inherits = __webpack_require__(56)
+var EE = __webpack_require__(58).EventEmitter
 var path = __webpack_require__(2)
-var assert = __webpack_require__(21)
-var isAbsolute = __webpack_require__(10)
-var globSync = __webpack_require__(58)
-var common = __webpack_require__(22)
+var assert = __webpack_require__(22)
+var isAbsolute = __webpack_require__(11)
+var globSync = __webpack_require__(59)
+var common = __webpack_require__(23)
 var alphasort = common.alphasort
 var alphasorti = common.alphasorti
 var setopts = common.setopts
 var ownProp = common.ownProp
-var inflight = __webpack_require__(59)
+var inflight = __webpack_require__(60)
 var util = __webpack_require__(6)
 var childrenIgnored = common.childrenIgnored
 var isIgnored = common.isIgnored
 
-var once = __webpack_require__(24)
+var once = __webpack_require__(25)
 
 function glob (pattern, options, cb) {
   if (typeof options === 'function') cb = options, options = {}
@@ -1398,7 +1404,7 @@ Glob.prototype._stat2 = function (f, abs, er, stat, cb) {
 
 
 /***/ }),
-/* 9 */
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = minimatch
@@ -1410,7 +1416,7 @@ try {
 } catch (er) {}
 
 var GLOBSTAR = minimatch.GLOBSTAR = Minimatch.GLOBSTAR = {}
-var expand = __webpack_require__(52)
+var expand = __webpack_require__(53)
 
 var plTypes = {
   '!': { open: '(?:(?!(?:', close: '))[^/]*?)'},
@@ -2327,7 +2333,7 @@ function regExpEscape (s) {
 
 
 /***/ }),
-/* 10 */
+/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2354,7 +2360,7 @@ module.exports.win32 = win32;
 
 
 /***/ }),
-/* 11 */
+/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var os = __webpack_require__(5);
@@ -2399,7 +2405,7 @@ module.exports = _cd;
 
 
 /***/ }),
-/* 12 */
+/* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var fs = __webpack_require__(1);
@@ -2709,7 +2715,7 @@ module.exports = _cp;
 
 
 /***/ }),
-/* 13 */
+/* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var common = __webpack_require__(0);
@@ -2730,7 +2736,7 @@ module.exports = error;
 
 
 /***/ }),
-/* 14 */
+/* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var common = __webpack_require__(0);
@@ -2811,7 +2817,7 @@ module.exports.clearCache = clearCache;
 
 
 /***/ }),
-/* 15 */
+/* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var path = __webpack_require__(2);
@@ -2833,13 +2839,13 @@ module.exports = _pwd;
 
 
 /***/ }),
-/* 16 */
+/* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var path = __webpack_require__(2);
 var fs = __webpack_require__(1);
 var common = __webpack_require__(0);
-var glob = __webpack_require__(8);
+var glob = __webpack_require__(9);
 
 var globPatternRecursive = path.sep + '**';
 
@@ -2980,7 +2986,7 @@ module.exports = _ls;
 
 
 /***/ }),
-/* 17 */
+/* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var common = __webpack_require__(0);
@@ -3187,7 +3193,7 @@ module.exports = _rm;
 
 
 /***/ }),
-/* 18 */
+/* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //
@@ -3213,8 +3219,8 @@ var common = __webpack_require__(0);
 //@commands
 
 // Load all default commands
-__webpack_require__(60).forEach(function (command) {
-  __webpack_require__(61)("./" + command);
+__webpack_require__(61).forEach(function (command) {
+  __webpack_require__(62)("./" + command);
 });
 
 //@
@@ -3224,7 +3230,7 @@ __webpack_require__(60).forEach(function (command) {
 exports.exit = process.exit;
 
 //@include ./src/error
-exports.error = __webpack_require__(13);
+exports.error = __webpack_require__(14);
 
 //@include ./src/common
 exports.ShellString = common.ShellString;
@@ -3349,13 +3355,13 @@ exports.config = common.config;
 
 
 /***/ }),
-/* 19 */
+/* 20 */
 /***/ (function(module, exports) {
 
 module.exports = require("http");
 
 /***/ }),
-/* 20 */
+/* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = realpath
@@ -3371,7 +3377,7 @@ var origRealpathSync = fs.realpathSync
 
 var version = process.version
 var ok = /^v[0-5]\./.test(version)
-var old = __webpack_require__(51)
+var old = __webpack_require__(52)
 
 function newError (er) {
   return er && er.syscall === 'realpath' && (
@@ -3427,13 +3433,13 @@ function unmonkeypatch () {
 
 
 /***/ }),
-/* 21 */
+/* 22 */
 /***/ (function(module, exports) {
 
 module.exports = require("assert");
 
 /***/ }),
-/* 22 */
+/* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports.alphasort = alphasort
@@ -3451,8 +3457,8 @@ function ownProp (obj, field) {
 }
 
 var path = __webpack_require__(2)
-var minimatch = __webpack_require__(9)
-var isAbsolute = __webpack_require__(10)
+var minimatch = __webpack_require__(10)
+var isAbsolute = __webpack_require__(11)
 var Minimatch = minimatch.Minimatch
 
 function alphasorti (a, b) {
@@ -3679,7 +3685,7 @@ function childrenIgnored (self, path) {
 
 
 /***/ }),
-/* 23 */
+/* 24 */
 /***/ (function(module, exports) {
 
 // Returns a wrapper function that returns a wrapped callback
@@ -3718,10 +3724,10 @@ function wrappy (fn, cb) {
 
 
 /***/ }),
-/* 24 */
+/* 25 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var wrappy = __webpack_require__(23)
+var wrappy = __webpack_require__(24)
 module.exports = wrappy(once)
 module.exports.strict = wrappy(onceStrict)
 
@@ -3766,7 +3772,7 @@ function onceStrict (fn) {
 
 
 /***/ }),
-/* 25 */
+/* 26 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var common = __webpack_require__(0);
@@ -3848,7 +3854,7 @@ function numberedLine(n, line) {
 
 
 /***/ }),
-/* 26 */
+/* 27 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var common = __webpack_require__(0);
@@ -4070,11 +4076,11 @@ module.exports = _chmod;
 
 
 /***/ }),
-/* 27 */
+/* 28 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var common = __webpack_require__(0);
-var _cd = __webpack_require__(11);
+var _cd = __webpack_require__(12);
 var path = __webpack_require__(2);
 
 common.register('dirs', _dirs, {
@@ -4288,7 +4294,7 @@ exports.dirs = _dirs;
 
 
 /***/ }),
-/* 28 */
+/* 29 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var format = __webpack_require__(6).format;
@@ -4357,15 +4363,15 @@ module.exports = _echo;
 
 
 /***/ }),
-/* 29 */
+/* 30 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(__dirname) {var common = __webpack_require__(0);
-var _tempDir = __webpack_require__(14).tempDir;
-var _pwd = __webpack_require__(15);
+var _tempDir = __webpack_require__(15).tempDir;
+var _pwd = __webpack_require__(16);
 var path = __webpack_require__(2);
 var fs = __webpack_require__(1);
-var child = __webpack_require__(30);
+var child = __webpack_require__(8);
 
 var DEFAULT_MAXBUFFER_SIZE = 20 * 1024 * 1024;
 var DEFAULT_ERROR_CODE = 1;
@@ -4572,12 +4578,6 @@ module.exports = _exec;
 /* WEBPACK VAR INJECTION */}.call(this, "/"))
 
 /***/ }),
-/* 30 */
-/***/ (function(module, exports) {
-
-module.exports = require("child_process");
-
-/***/ }),
 /* 31 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -4585,7 +4585,7 @@ module.exports = require("child_process");
   throw new Error('This file should not be required');
 }
 
-var childProcess = __webpack_require__(30);
+var childProcess = __webpack_require__(8);
 var fs = __webpack_require__(1);
 
 var paramFilePath = process.argv[2];
@@ -4621,7 +4621,7 @@ if (pipe) {
   c.stdin.end(pipe);
 }
 
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(62)(module)))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(63)(module)))
 
 /***/ }),
 /* 32 */
@@ -4629,7 +4629,7 @@ if (pipe) {
 
 var path = __webpack_require__(2);
 var common = __webpack_require__(0);
-var _ls = __webpack_require__(16);
+var _ls = __webpack_require__(17);
 
 common.register('find', _find, {});
 
@@ -5074,8 +5074,8 @@ module.exports = _mkdir;
 var fs = __webpack_require__(1);
 var path = __webpack_require__(2);
 var common = __webpack_require__(0);
-var cp = __webpack_require__(12);
-var rm = __webpack_require__(17);
+var cp = __webpack_require__(13);
+var rm = __webpack_require__(18);
 
 common.register('mv', _mv, {
   cmdOptions: {
@@ -6074,6 +6074,69 @@ module.exports = require("https");
 /* 51 */
 /***/ (function(module, exports, __webpack_require__) {
 
+var child_process = __webpack_require__(8);
+
+// daemonize ourselves
+module.exports = function(opt) {
+    // we are a daemon, don't daemonize again
+    if (process.env.__daemon) {
+        return process.pid;
+    }
+
+    var args = [].concat(process.argv);
+
+    // shift off node
+    args.shift();
+
+    // our script name
+    var script = args.shift();
+
+    opt = opt || {};
+    var env = opt.env || process.env;
+
+    // the child process will have this set so we can identify it as being daemonized
+    env.__daemon = true;
+
+    // start ourselves as a daemon
+    module.exports.daemon(script, args, opt);
+
+    // parent is done
+    return process.exit();
+};
+
+// daemonizes the script and returns the child process object
+module.exports.daemon = function(script, args, opt) {
+
+    opt = opt || {};
+
+    var stdout = opt.stdout || 'ignore';
+    var stderr = opt.stderr || 'ignore';
+
+    var env = opt.env || process.env;
+    var cwd = opt.cwd || process.cwd;
+
+    var cp_opt = {
+        stdio: ['ignore', stdout, stderr],
+        env: env,
+        cwd: cwd,
+        detached: true
+    };
+
+    // spawn the child using the same node process as ours
+    var child = child_process.spawn(process.execPath, [script].concat(args), cp_opt);
+
+    // required so the parent can exit
+    child.unref();
+
+    return child;
+};
+
+
+
+/***/ }),
+/* 52 */
+/***/ (function(module, exports, __webpack_require__) {
+
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -6380,11 +6443,11 @@ exports.realpath = function realpath(p, cache, cb) {
 
 
 /***/ }),
-/* 52 */
+/* 53 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var concatMap = __webpack_require__(53);
-var balanced = __webpack_require__(54);
+var concatMap = __webpack_require__(54);
+var balanced = __webpack_require__(55);
 
 module.exports = expandTop;
 
@@ -6587,7 +6650,7 @@ function expand(str, isTop) {
 
 
 /***/ }),
-/* 53 */
+/* 54 */
 /***/ (function(module, exports) {
 
 module.exports = function (xs, fn) {
@@ -6606,7 +6669,7 @@ var isArray = Array.isArray || function (xs) {
 
 
 /***/ }),
-/* 54 */
+/* 55 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6672,7 +6735,7 @@ function range(a, b, str) {
 
 
 /***/ }),
-/* 55 */
+/* 56 */
 /***/ (function(module, exports, __webpack_require__) {
 
 try {
@@ -6682,12 +6745,12 @@ try {
   module.exports = util.inherits;
 } catch (e) {
   /* istanbul ignore next */
-  module.exports = __webpack_require__(56);
+  module.exports = __webpack_require__(57);
 }
 
 
 /***/ }),
-/* 56 */
+/* 57 */
 /***/ (function(module, exports) {
 
 if (typeof Object.create === 'function') {
@@ -6720,28 +6783,28 @@ if (typeof Object.create === 'function') {
 
 
 /***/ }),
-/* 57 */
+/* 58 */
 /***/ (function(module, exports) {
 
 module.exports = require("events");
 
 /***/ }),
-/* 58 */
+/* 59 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = globSync
 globSync.GlobSync = GlobSync
 
 var fs = __webpack_require__(1)
-var rp = __webpack_require__(20)
-var minimatch = __webpack_require__(9)
+var rp = __webpack_require__(21)
+var minimatch = __webpack_require__(10)
 var Minimatch = minimatch.Minimatch
-var Glob = __webpack_require__(8).Glob
+var Glob = __webpack_require__(9).Glob
 var util = __webpack_require__(6)
 var path = __webpack_require__(2)
-var assert = __webpack_require__(21)
-var isAbsolute = __webpack_require__(10)
-var common = __webpack_require__(22)
+var assert = __webpack_require__(22)
+var isAbsolute = __webpack_require__(11)
+var common = __webpack_require__(23)
 var alphasort = common.alphasort
 var alphasorti = common.alphasorti
 var setopts = common.setopts
@@ -7218,12 +7281,12 @@ GlobSync.prototype._makeAbs = function (f) {
 
 
 /***/ }),
-/* 59 */
+/* 60 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var wrappy = __webpack_require__(23)
+var wrappy = __webpack_require__(24)
 var reqs = Object.create(null)
-var once = __webpack_require__(24)
+var once = __webpack_require__(25)
 
 module.exports = wrappy(inflight)
 
@@ -7278,7 +7341,7 @@ function slice (args) {
 
 
 /***/ }),
-/* 60 */
+/* 61 */
 /***/ (function(module, exports) {
 
 module.exports = [
@@ -7313,30 +7376,30 @@ module.exports = [
 
 
 /***/ }),
-/* 61 */
+/* 62 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
-	"./cat": 25,
-	"./cat.js": 25,
-	"./cd": 11,
-	"./cd.js": 11,
-	"./chmod": 26,
-	"./chmod.js": 26,
+	"./cat": 26,
+	"./cat.js": 26,
+	"./cd": 12,
+	"./cd.js": 12,
+	"./chmod": 27,
+	"./chmod.js": 27,
 	"./common": 0,
 	"./common.js": 0,
-	"./cp": 12,
-	"./cp.js": 12,
-	"./dirs": 27,
-	"./dirs.js": 27,
-	"./echo": 28,
-	"./echo.js": 28,
-	"./error": 13,
-	"./error.js": 13,
-	"./exec": 29,
+	"./cp": 13,
+	"./cp.js": 13,
+	"./dirs": 28,
+	"./dirs.js": 28,
+	"./echo": 29,
+	"./echo.js": 29,
+	"./error": 14,
+	"./error.js": 14,
+	"./exec": 30,
 	"./exec-child": 31,
 	"./exec-child.js": 31,
-	"./exec.js": 29,
+	"./exec.js": 30,
 	"./find": 32,
 	"./find.js": 32,
 	"./grep": 33,
@@ -7345,8 +7408,8 @@ var map = {
 	"./head.js": 34,
 	"./ln": 35,
 	"./ln.js": 35,
-	"./ls": 16,
-	"./ls.js": 16,
+	"./ls": 17,
+	"./ls.js": 17,
 	"./mkdir": 36,
 	"./mkdir.js": 36,
 	"./mv": 37,
@@ -7355,10 +7418,10 @@ var map = {
 	"./popd.js": 38,
 	"./pushd": 39,
 	"./pushd.js": 39,
-	"./pwd": 15,
-	"./pwd.js": 15,
-	"./rm": 17,
-	"./rm.js": 17,
+	"./pwd": 16,
+	"./pwd.js": 16,
+	"./rm": 18,
+	"./rm.js": 18,
 	"./sed": 40,
 	"./sed.js": 40,
 	"./set": 41,
@@ -7367,8 +7430,8 @@ var map = {
 	"./sort.js": 42,
 	"./tail": 43,
 	"./tail.js": 43,
-	"./tempdir": 14,
-	"./tempdir.js": 14,
+	"./tempdir": 15,
+	"./tempdir.js": 15,
 	"./test": 44,
 	"./test.js": 44,
 	"./to": 45,
@@ -7401,10 +7464,10 @@ webpackContext.keys = function webpackContextKeys() {
 };
 webpackContext.resolve = webpackContextResolve;
 module.exports = webpackContext;
-webpackContext.id = 61;
+webpackContext.id = 62;
 
 /***/ }),
-/* 62 */
+/* 63 */
 /***/ (function(module, exports) {
 
 module.exports = function(module) {
@@ -7432,7 +7495,7 @@ module.exports = function(module) {
 
 
 /***/ }),
-/* 63 */
+/* 64 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -7442,7 +7505,7 @@ __webpack_require__.r(__webpack_exports__);
 var external_stream_ = __webpack_require__(3);
 
 // EXTERNAL MODULE: external "http"
-var external_http_ = __webpack_require__(19);
+var external_http_ = __webpack_require__(20);
 
 // EXTERNAL MODULE: external "url"
 var external_url_ = __webpack_require__(7);
@@ -9087,7 +9150,7 @@ fetch.Promise = global.Promise;
 
 
 // EXTERNAL MODULE: ./node_modules/shelljs/shell.js
-var shell = __webpack_require__(18);
+var shell = __webpack_require__(19);
 var shell_default = /*#__PURE__*/__webpack_require__.n(shell);
 
 // EXTERNAL MODULE: external "os"
@@ -9095,12 +9158,12 @@ var external_os_ = __webpack_require__(5);
 var external_os_default = /*#__PURE__*/__webpack_require__.n(external_os_);
 
 // CONCATENATED MODULE: ./agent.js
-// require('daemon')({
-//   cwd: process.cwd(),
-//   stdout: 'inherit',
-//   stderr: 'inherit'
-// });
-// console.log(`${process.pid} process start at ${new Date()}`);
+__webpack_require__(51)({
+  cwd: process.cwd(),
+  stdout: 'inherit',
+  stderr: 'inherit'
+});
+console.log(`${process.pid} process start at ${new Date()}`);
 
 
 
@@ -9181,7 +9244,6 @@ function wait(ms) {
 async function start() {
     while (true) {
         try {
-            console.log('asdadasd')
             await doPoll(allService);
         } catch (e) {
             console.log(e);
