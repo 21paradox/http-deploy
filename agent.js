@@ -1,3 +1,10 @@
+require('daemon')({
+  cwd: process.cwd(),
+  stdout: 'inherit',
+  stderr: 'inherit'
+});
+console.log(`${process.pid} process start at ${new Date()}`);
+
 const fetch = require('node-fetch');
 const shelljs = require('shelljs');
 const os = require('os')
@@ -76,6 +83,7 @@ function wait(ms) {
 async function start() {
     while (true) {
         try {
+            console.log('asdadasd')
             await doPoll(allService);
         } catch (e) {
             console.log(e);
