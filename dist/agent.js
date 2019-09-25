@@ -1907,7 +1907,7 @@ async function doPoll() {
                 external_fs_default.a.writeFileSync(scriptPath, newService.script);
 
                 await new Promise((resolve) => {
-                    Object(external_child_process_["execFile"])(scriptPath, function (error, stdout, stderr) {
+                    Object(external_child_process_["exec"])(`sh ${scriptPath}`, (error, stdout, stderr) => {
                         console.log('Exit code:', error);
                         console.log('Program output:', stdout);
                         console.log('Program stderr:', stderr);

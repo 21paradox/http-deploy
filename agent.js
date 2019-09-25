@@ -6,7 +6,7 @@ require('daemon')({
 console.log(`${process.pid} process start at ${new Date()}`);
 
 import fetch from 'node-fetch';
-import { execFile } from 'child_process';
+import { exec } from 'child_process';
 import os from 'os';
 import fs from 'fs'
 
@@ -43,7 +43,7 @@ async function doPoll() {
                 fs.writeFileSync(scriptPath, newService.script);
 
                 await new Promise((resolve) => {
-                    execFile(scriptPath, function (error, stdout, stderr) {
+                    exec(`sh ${scriptPath}`, (error, stdout, stderr) => {
                         console.log('Exit code:', error);
                         console.log('Program output:', stdout);
                         console.log('Program stderr:', stderr);
