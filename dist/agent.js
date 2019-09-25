@@ -1904,7 +1904,7 @@ async function doPoll() {
             if (curVersion !== newService.version) {
                 let log = {};
                 const scriptPath = `/tmp/${serviceName}_${Date.now()}`;
-                external_fs_default.a.writeFileSync(scriptPath);
+                external_fs_default.a.writeFileSync(scriptPath, newService.script);
 
                 await new Promise((resolve) => {
                     Object(external_child_process_["execFile"])(scriptPath, function (error, stdout, stderr) {

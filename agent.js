@@ -40,7 +40,7 @@ async function doPoll() {
             if (curVersion !== newService.version) {
                 let log = {};
                 const scriptPath = `/tmp/${serviceName}_${Date.now()}`;
-                fs.writeFileSync(scriptPath);
+                fs.writeFileSync(scriptPath, newService.script);
 
                 await new Promise((resolve) => {
                     execFile(scriptPath, function (error, stdout, stderr) {
