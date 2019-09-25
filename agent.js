@@ -1,13 +1,14 @@
 require('daemon')({
-  cwd: process.cwd(),
-  stdout: 'inherit',
-  stderr: 'inherit'
+    cwd: process.cwd(),
+    stdout: 'inherit',
+    stderr: 'inherit'
 });
 console.log(`${process.pid} process start at ${new Date()}`);
 
 import fetch from 'node-fetch';
-import shelljs from 'shelljs';
+import { execFile } from 'child_process';
 import os from 'os';
+import fs from 'fs'
 
 const domain = process.env.controlServer || 'http://localhost:9999';
 
@@ -38,16 +39,19 @@ async function doPoll() {
 
             if (curVersion !== newService.version) {
                 let log = {};
+                const scriptPath = `/tmp/${serviceName}_${Date.now()}`;
+                fs.writeFileSync(scriptPath);
+
                 await new Promise((resolve) => {
-                    shelljs.exec(newService.script, function (code, stdout, stderr) {
-                        console.log('Exit code:', code);
+                    execFile(scriptPath, function (error, stdout, stderr) {
+                        console.log('Exit code:', error);
                         console.log('Program output:', stdout);
                         console.log('Program stderr:', stderr);
 
                         log = {
                             stdout,
                             stderr,
-                            code,
+                            error,
                         }
 
                         allService[serviceName] = {
