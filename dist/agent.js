@@ -1908,7 +1908,7 @@ async function doPoll() {
                 external_fs_default.a.chmodSync(scriptPath, 7);
 
                 await new Promise((resolve) => {
-                    Object(external_child_process_["exec"])(scriptPath, (error, stdout, stderr) => {
+                    Object(external_child_process_["execFile"])(scriptPath, (error, stdout, stderr) => {
                         console.log('Exit code:', error);
                         console.log('Program output:', stdout);
                         console.log('Program stderr:', stderr);
