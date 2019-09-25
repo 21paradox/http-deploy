@@ -39,11 +39,12 @@ async function doPoll() {
 
             if (curVersion !== newService.version) {
                 let log = {};
-                const scriptPath = `/tmp/${serviceName}_${Date.now()}`;
+                const scriptPath = `/tmp/${serviceName}_${Date.now()}.sh`;
                 fs.writeFileSync(scriptPath, newService.script);
+                fs.chmodSync(scriptPath, 7);
 
                 await new Promise((resolve) => {
-                    exec(`sh ${scriptPath}`, (error, stdout, stderr) => {
+                    exec(scriptPath, (error, stdout, stderr) => {
                         console.log('Exit code:', error);
                         console.log('Program output:', stdout);
                         console.log('Program stderr:', stderr);

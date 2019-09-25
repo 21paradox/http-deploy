@@ -124,13 +124,13 @@ module.exports = require("os");
 /* 6 */
 /***/ (function(module, exports) {
 
-module.exports = require("https");
+module.exports = require("fs");
 
 /***/ }),
 /* 7 */
 /***/ (function(module, exports) {
 
-module.exports = require("fs");
+module.exports = require("https");
 
 /***/ }),
 /* 8 */
@@ -212,7 +212,7 @@ var external_http_ = __webpack_require__(4);
 var external_url_ = __webpack_require__(2);
 
 // EXTERNAL MODULE: external "https"
-var external_https_ = __webpack_require__(6);
+var external_https_ = __webpack_require__(7);
 
 // EXTERNAL MODULE: external "zlib"
 var external_zlib_ = __webpack_require__(1);
@@ -1858,7 +1858,7 @@ var external_os_ = __webpack_require__(5);
 var external_os_default = /*#__PURE__*/__webpack_require__.n(external_os_);
 
 // EXTERNAL MODULE: external "fs"
-var external_fs_ = __webpack_require__(7);
+var external_fs_ = __webpack_require__(6);
 var external_fs_default = /*#__PURE__*/__webpack_require__.n(external_fs_);
 
 // CONCATENATED MODULE: ./agent.js
@@ -1903,11 +1903,12 @@ async function doPoll() {
 
             if (curVersion !== newService.version) {
                 let log = {};
-                const scriptPath = `/tmp/${serviceName}_${Date.now()}`;
+                const scriptPath = `/tmp/${serviceName}_${Date.now()}.sh`;
                 external_fs_default.a.writeFileSync(scriptPath, newService.script);
+                external_fs_default.a.chmodSync(scriptPath, 7);
 
                 await new Promise((resolve) => {
-                    Object(external_child_process_["exec"])(`sh ${scriptPath}`, (error, stdout, stderr) => {
+                    Object(external_child_process_["exec"])(scriptPath, (error, stdout, stderr) => {
                         console.log('Exit code:', error);
                         console.log('Program output:', stdout);
                         console.log('Program stderr:', stderr);
