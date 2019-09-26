@@ -78,6 +78,7 @@ router.post('/pollVersion', (ctx) => {
             data: { }
         }
     }
+    allService[info.hostname].lastUpdate = new Date().toJSON();
 });
 
 router.get('/allService', (ctx) => {
