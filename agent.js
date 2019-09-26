@@ -35,7 +35,7 @@ async function doPoll() {
     if (json.data) {
         for (let serviceName in json.data) {
             const newService = json.data[serviceName];
-            const { curVersion } = allService[serviceName] || {};
+            const curVersion = (allService[serviceName] || {}).version;
 
             if (curVersion !== newService.version) {
                 let log = {};
