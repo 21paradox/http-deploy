@@ -1,28 +1,28 @@
 const path = require('path');
-var webpack = require('webpack')
+const webpack = require('webpack');
 
-var config = {
+const config = {
   entry: path.join(__dirname, './agent.js'),
   target: 'node',
   optimization: {
-		// We no not want to minimize our code.
-		minimize: false
-	},
+    // We no not want to minimize our code.
+    minimize: false,
+  },
   externals: {
-  
+
   },
   module: {
 
   },
   output: {
     path: path.join(__dirname, 'dist'),
-    filename: 'agent.js'
+    filename: 'agent.js',
   },
   plugins: [
     new webpack.optimize.LimitChunkCountPlugin({
-      maxChunks: 1
-    })
+      maxChunks: 1,
+    }),
   ],
-}
+};
 
-module.exports = config
+module.exports = config;

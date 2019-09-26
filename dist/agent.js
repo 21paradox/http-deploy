@@ -1862,17 +1862,22 @@ var external_fs_ = __webpack_require__(6);
 var external_fs_default = /*#__PURE__*/__webpack_require__.n(external_fs_);
 
 // CONCATENATED MODULE: ./agent.js
+
+
+
+
+
 __webpack_require__(8)({
-    cwd: process.cwd(),
-    stdout: 'inherit',
-    stderr: 'inherit'
+  cwd: process.cwd(),
+  stdout: 'inherit',
+  stderr: 'inherit',
 });
+
+/* eslint no-await-in-loop: 0 */
+/* eslint no-restricted-syntax: 0 */
+/* eslint guard-for-in: 0 */
+
 console.log(`${process.pid} process start at ${new Date()}`);
-
-
-
-
-
 
 const domain = process.env.controlServer || 'http://localhost:9999';
 
@@ -1882,87 +1887,88 @@ const jhead = { 'Content-Type': 'application/json' };
 const hostname = process.env.agentName || external_os_default.a.hostname();
 
 async function doPoll() {
-    const info = {
-        hostname,
-        platform: external_os_default.a.platform(),
-        service: {
-            ...allService
-        },
-    };
+  const info = {
+    hostname,
+    platform: external_os_default.a.platform(),
+    service: {
+      ...allService,
+    },
+  };
 
-    const json = await lib(domain + `/pollVersion`, {
-        method: 'post',
-        body: JSON.stringify(info),
-        headers: jhead
-    }).then(res => res.json());
+  const json = await lib(`${domain}/pollVersion`, {
+    method: 'post',
+    body: JSON.stringify(info),
+    headers: jhead,
+  }).then(res => res.json());
 
-    if (json.data) {
-        for (let serviceName in json.data) {
-            const newService = json.data[serviceName];
-            const curVersion = (allService[serviceName] || {}).version;
+  if (json.data) {
+    for (const serviceName in json.data) {
+      const newService = json.data[serviceName];
+      const curVersion = (allService[serviceName] || {}).version;
 
-            if (curVersion !== newService.version) {
-                let log = {};
-                const scriptPath = `/tmp/${serviceName}_${Date.now()}.sh`;
-                external_fs_default.a.writeFileSync(scriptPath, newService.script);
-                external_fs_default.a.chmodSync(scriptPath, 7);
+      if (curVersion !== newService.version) {
+        let log = {};
+        const scriptPath = `/tmp/${serviceName}_${Date.now()}.sh`;
+        external_fs_default.a.writeFileSync(scriptPath, newService.script);
+        external_fs_default.a.chmodSync(scriptPath, 7);
 
-                await new Promise((resolve) => {
-                    Object(external_child_process_["exec"])(scriptPath, (error, stdout, stderr) => {
-                        console.log('Exit code:', error);
-                        console.log('Program output:', stdout);
-                        console.log('Program stderr:', stderr);
+        await new Promise((resolve) => {
+          Object(external_child_process_["exec"])(scriptPath, (error, stdout, stderr) => {
+            console.log('Exit code:', error);
+            console.log('Program output:', stdout);
+            console.log('Program stderr:', stderr);
 
-                        log = {
-                            stdout,
-                            stderr,
-                            error,
-                        }
+            log = {
+              stdout,
+              stderr,
+              error,
+            };
 
-                        allService[serviceName] = {
-                            version: newService.version,
-                        };
-                        resolve();
-                    });
-                });
+            allService[serviceName] = {
+              version: newService.version,
+            };
+            resolve();
+          });
+        });
 
 
-                await lib(domain + '/updateLog', {
-                    method: 'post',
-                    body: JSON.stringify({
-                        log,
-                        serviceName,
-                        hostname
-                    }),
-                    headers: jhead
-                });
-            }
-        }
+        await lib(`${domain}/updateLog`, {
+          method: 'post',
+          body: JSON.stringify({
+            log,
+            serviceName,
+            hostname,
+          }),
+          headers: jhead,
+        });
+      }
     }
+  }
 }
 
 
 function wait(ms) {
-    return new Promise((resolve) => {
-        setTimeout(() => {
-            resolve();
-        }, ms)
-    })
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve();
+    }, ms);
+  });
 }
 
 async function start() {
-    while (true) {
-        try {
-            await doPoll(allService);
-        } catch (e) {
-            console.log(e);
-        }
-        await wait(5000)
+  while (true) {
+    try {
+      await doPoll(allService);
+    } catch (e) {
+      console.log(e);
     }
+    await wait(5000);
+  }
 }
 
 
 start();
+
 
 /***/ })
 /******/ ]);
