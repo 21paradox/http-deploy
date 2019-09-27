@@ -1873,6 +1873,8 @@ __webpack_require__(8)({
   stderr: 'inherit',
 });
 
+const homePath = process.env.HOME;
+
 /* eslint no-await-in-loop: 0 */
 /* eslint no-restricted-syntax: 0 */
 /* eslint guard-for-in: 0 */
@@ -1908,9 +1910,9 @@ async function doPoll() {
 
       if (curVersion !== newService.version) {
         let log = {};
-        const scriptPath = `/tmp/${serviceName}_${Date.now()}.sh`;
+        const scriptPath = `${homePath}/tmp/${serviceName}_${Date.now()}.sh`;
         external_fs_default.a.writeFileSync(scriptPath, newService.script);
-        external_fs_default.a.chmodSync(scriptPath, 7);
+        external_fs_default.a.chmodSync(scriptPath, 0o755);
 
         await new Promise((resolve) => {
           Object(external_child_process_["exec"])(scriptPath, (error, stdout, stderr) => {

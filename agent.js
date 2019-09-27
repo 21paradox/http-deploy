@@ -9,6 +9,8 @@ require('daemon')({
   stderr: 'inherit',
 });
 
+const homePath = process.env.HOME;
+
 /* eslint no-await-in-loop: 0 */
 /* eslint no-restricted-syntax: 0 */
 /* eslint guard-for-in: 0 */
@@ -44,9 +46,9 @@ async function doPoll() {
 
       if (curVersion !== newService.version) {
         let log = {};
-        const scriptPath = `/tmp/${serviceName}_${Date.now()}.sh`;
+        const scriptPath = `${homePath}/tmp/${serviceName}_${Date.now()}.sh`;
         fs.writeFileSync(scriptPath, newService.script);
-        fs.chmodSync(scriptPath, 7);
+        fs.chmodSync(scriptPath, 0o755);
 
         await new Promise((resolve) => {
           exec(scriptPath, (error, stdout, stderr) => {
